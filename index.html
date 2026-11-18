@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EMBER COFFEE — specialty кава, свіжообсмажені зерна та авторські напої. Відкрийте смак справжньої кави.">
+  <meta name="theme-color" content="#211914">
+  <title>EMBER COFFEE — кава, що запалює день</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #211914;
+      --coffee: #493126;
+      --cream: #f7f1e8;
+      --paper: #fffdf9;
+      --copper: #b8754d;
+      --muted: #796b60;
+      --line: #e8ded2;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .topline { background: var(--ink); color: #f7eee5; text-align: center; padding: 9px 16px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,253,249,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-family: var(--serif); font-size: 25px; font-weight: 700; letter-spacing: .06em; }
+    .brand span { color: var(--copper); }
+    .links { display: flex; gap: 30px; align-items: center; font-size: 13px; color: #57483e; }
+    .links a:hover { color: var(--copper); }
+    .button { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 3px; padding: 14px 22px; background: var(--coffee); color: white; font: 600 12px var(--sans); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background .2s, transform .2s; }
+    .button:hover { background: var(--copper); transform: translateY(-2px); }
+    .button.light { background: var(--cream); color: var(--ink); }
+    .button.light:hover { background: #ead9c7; }
+    .menu-toggle { display: none; background: none; border: 0; font-size: 25px; cursor: pointer; color: var(--ink); }
+    .hero { background: var(--cream); padding: 70px 0 76px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1.02fr; gap: 64px; align-items: center; }
+    .eyebrow { color: var(--copper); font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { font: 600 clamp(42px, 5.4vw, 72px)/1.08 var(--serif); letter-spacing: -.035em; margin: 20px 0; }
+    h1 em { color: var(--copper); font-weight: 500; }
+    .hero-copy { color: var(--muted); max-width: 450px; font-size: 15px; line-height: 1.85; margin-bottom: 30px; }
+    .hero-actions { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+    .text-link { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border-bottom: 1px solid var(--copper); padding-bottom: 5px; }
+    .hero-photo { position: relative; }
+    .hero-photo img { width: 100%; height: 510px; object-fit: cover; border-radius: 48% 48% 3px 3px; }
+    .photo-note { position: absolute; left: -30px; bottom: 28px; background: var(--paper); padding: 18px 22px; box-shadow: 0 12px 35px #21191418; font: 15px var(--serif); }
+    .photo-note strong { display: block; font: 700 10px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--copper); margin-bottom: 5px; }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 55px; max-width: 480px; }
+    .stat strong { display: block; font: 600 27px var(--serif); }
+    .stat span { color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    section { padding: 100px 0; }
+    .section-head { text-align: center; max-width: 610px; margin: 0 auto 48px; }
+    h2 { font: 600 clamp(34px,4vw,48px)/1.15 var(--serif); margin: 14px 0; }
+    .section-head p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .menu-card { background: var(--cream); padding-bottom: 22px; }
+    .menu-card img { width: 100%; height: 230px; object-fit: cover; }
+    .menu-info { padding: 20px 21px 0; }
+    .menu-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+    .menu-title h3 { font: 600 22px var(--serif); margin: 0; }
+    .price { color: var(--copper); font-weight: 700; font-size: 14px; white-space: nowrap; }
+    .menu-info p { color: var(--muted); font-size: 12px; line-height: 1.7; margin: 10px 0 0; }
+    .story { background: var(--ink); color: var(--cream); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 75px; align-items: center; }
+    .story img { width: 100%; height: 460px; object-fit: cover; }
+    .story p { color: #c7b8aa; font-size: 14px; line-height: 1.9; }
+    .story h2 { max-width: 470px; }
+    .story .eyebrow { color: #d69a70; }
+    .features { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
+    .feature { border-top: 1px solid var(--line); padding-top: 22px; }
+    .feature .number { color: var(--copper); font: 24px var(--serif); }
+    .feature h3 { font: 600 21px var(--serif); margin: 12px 0 8px; }
+    .feature p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .visit { background: var(--cream); text-align: center; }
+    .visit p { color: var(--muted); line-height: 1.8; }
+    .visit-card { max-width: 650px; margin: 0 auto; padding: 45px 25px; border: 1px solid #dfd0c1; }
+    footer { background: #17110e; color: #eee3d8; padding: 45px 0 25px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; padding-bottom: 35px; }
+    .footer-top p { color: #b9a99b; font-size: 12px; line-height: 1.8; max-width: 330px; margin: 12px 0 0; }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; font-size: 12px; color: #d3c5b8; }
+    .disclaimer { border-top: 1px solid #493b32; padding-top: 20px; color: #b9a99b; font-size: 11px; line-height: 1.7; }
+    .copyright { margin-top: 15px; color: #817268; font-size: 10px; }
+    @media (max-width: 800px) {
+      .hero-grid,.story-grid { grid-template-columns: 1fr; gap: 38px; }
+      .hero { padding: 55px 0; }
+      .hero-photo img { height: 390px; }
+      .photo-note { left: 12px; }
+      .menu-grid { grid-template-columns: repeat(2,1fr); }
+      .story-grid { gap: 35px; }
+      .story img { height: 340px; }
+      section { padding: 72px 0; }
+    }
+    @media (max-width: 580px) {
+      .wrap { width: min(100% - 32px, 1160px); }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: block; }
+      .links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--paper); padding: 20px 24px; flex-direction: column; align-items: flex-start; border-bottom: 1px solid var(--line); }
+      .links.open { display: flex; }
+      .nav > .button { display: none; }
+      .hero-grid { gap: 30px; }
+      .hero-photo img { height: 330px; }
+      .stats { gap: 8px; margin-top: 38px; }
+      .stat strong { font-size: 22px; }
+      .stat span { font-size: 9px; }
+      .menu-grid,.features { grid-template-columns: 1fr; }
+      .menu-card img { height: 240px; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">Свіжообсмажена кава · Добрий настрій щодня</div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home">EMBER<span>.</span>COFFEE</a>
+      <button class="menu-toggle" aria-label="Відкрити меню" aria-expanded="false">☰</button>
+      <nav class="links" id="navLinks">
+        <a href="#home">Головна</a>
+        <a href="#menu">Меню</a>
+        <a href="#story">Наша історія</a>
+        <a href="#values">Наш підхід</a>
+        <a href="#visit">Контакти</a>
+      </nav>
+      <a class="button" href="#menu">Переглянути меню</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Specialty coffee · Odesa</div>
+          <h1>Кава, що <em>запалює</em> твій день.</h1>
+          <p class="hero-copy">Знаходимо цікаві зерна, дбайливо обсмажуємо та готуємо напої, до яких хочеться повертатися. Твоя маленька пауза серед великого міста.</p>
+          <div class="hero-actions">
+            <a class="button" href="#menu">Відкрити меню</a>
+            <a class="text-link" href="#story">Познайомитися з нами ↗</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>12+</strong><span>смакових профілів</span></div>
+            <div class="stat"><strong>100%</strong><span>любові до кави</span></div>
+            <div class="stat"><strong>1</strong><span>чашка за раз</span></div>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1100&q=85" alt="Бариста готує каву в кав'ярні">
+          <div class="photo-note"><strong>Наша філософія</strong>Повільніше. Смачніше. Справжніше.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Обране бариста</div>
+          <h2>Знайди свою чашку</h2>
+          <p>Класика, яку ми любимо, та напої з характером. Обери те, що пасує саме сьогодні.</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=800&q=80" alt="Капучино з молочною пінкою">
+            <div class="menu-info"><div class="menu-title"><h3>Капучино</h3><span class="price">85 грн</span></div><p>Еспресо, шовковисте молоко та ніжна пінка.</p></div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80" alt="Лате у склянці">
+            <div class="menu-info"><div class="menu-title"><h3>Лате</h3><span class="price">95 грн</span></div><p>М'який кавовий смак із виразною молочною текстурою.</p></div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Чорна кава">
+            <div class="menu-info"><div class="menu-title"><h3>Фільтр-кава</h3><span class="price">90 грн</span></div><p>Чистий смак зерна з нотами фруктів та шоколаду.</p></div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80" alt="Холодна кава з льодом">
+            <div class="menu-info"><div class="menu-title"><h3>Айс-лате</h3><span class="price">105 грн</span></div><p>Охолоджений еспресо, молоко та лід — освіжаюча класика.</p></div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=800&q=80" alt="Еспресо у маленькій чашці">
+            <div class="menu-info"><div class="menu-title"><h3>Еспресо</h3><span class="price">65 грн</span></div><p>Насичений короткий напій із золотистою крема.</p></div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80" alt="Авторський кавовий напій">
+            <div class="menu-info"><div class="menu-title"><h3>Карамельний раф</h3><span class="price">115 грн</span></div><p>Еспресо, вершки та делікатна карамельна солодкість.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="wrap story-grid">
+        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1000&q=85" alt="Затишний інтер'єр кав'ярні">
+        <div>
+          <div class="eyebrow">Трохи про нас</div>
+          <h2>Маленькі ритуали. Великі враження.</h2>
+          <p>EMBER COFFEE — концепція міської кав'ярні для тих, хто цінує смак, простоту та атмосферу. Ми віримо, що хороша кава починається з уважності: до зерна, води, рецепта й людини, для якої готуємо напій.</p>
+          <p>Наша мета — зробити кавову культуру ближчою та зрозумілішою, а кожну перерву — трішки теплішою.</p>
+          <a class="button light" href="#visit">Дізнатися більше</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="values">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Чому EMBER</div>
+          <h2>Якість у кожній деталі</h2>
+          <p>Три принципи, на яких побудована наша кавова концепція.</p>
+        </div>
+        <div class="features">
+          <article class="feature"><div class="number">01</div><h3>Добірні зерна</h3><p>Звертаємо увагу на походження, обсмаження та смаковий профіль кожної кави.</p></article>
+          <article class="feature"><div class="number">02</div><h3>Уважне приготування</h3><p>Дотримуємося рецептури й балансу, щоб напій розкривав свій характер.</p></article>
+          <article class="feature"><div class="number">03</div><h3>Тепла атмосфера</h3><p>Створюємо простір, де можна перепочити, зустрітися та насолодитися моментом.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="wrap">
+        <div class="visit-card">
+          <div class="eyebrow">Залишаймося на зв'язку</div>
+          <h2>Твоя наступна кавова пауза — тут.</h2>
+          <p>Це навчальний демонстраційний проєкт. Контактні дані та пропозиції не є реальними.</p>
+          <a class="button" href="mailto:hello@example.com?subject=EMBER%20COFFEE">Написати нам</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div><a class="brand" href="#home">EMBER<span>.</span>COFFEE</a><p>Концепція specialty-кав'ярні, створена як навчальний проєкт із вебдизайну та цифрового маркетингу.</p></div>
+        <div class="footer-links"><a href="#home">Головна</a><a href="#menu">Меню</a><a href="#story">Історія</a><a href="#visit">Контакти</a></div>
+      </div>
+      <div class="disclaimer">Увага! Цей веб-сайт є навчальним проєктом, створеним виключно з освітньою метою в межах навчального курсу. Сайт не здійснює комерційної діяльності, не надає платних послуг і не призначений для отримання прибутку.</div>
+      <div class="copyright">© 2026 EMBER COFFEE · Навчальний макет</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#navLinks');
+    toggle.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(opened));
+      toggle.textContent = opened ? '×' : '☰';
+    });
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>
